@@ -19,6 +19,7 @@ import zipfile
 import re
 import xml.etree.ElementTree as ET
 from core.btrfs_parser import BtrfsParser
+from core.xfs_parser import XfsParser
 from core.metadata_extractor import MetadataExtractor
 
 
@@ -245,7 +246,18 @@ class UnearthApp:
         
         self.logger.info(f"Detecting filesystem for session {session_id}")
         
-        # Try Btrfs parser first
+        # Try XFS parser first (simple 4-byte magic at offset 0)
+        try:
+            xfs_parser = XfsParser(str(session.image_path))
+            with xfs_parser:
+                if xfs_parser.detect_filesystem():
+                    session.fs_type = FileSystemType.XFS
+                    self.logger.info("Detected XFS filesystem using parser")
+                    return FileSystemType.XFS
+        except Exception as e:
+            self.logger.debug(f"XFS detection failed: {e}")
+        
+        # Try Btrfs parser
         try:
             btrfs_parser = BtrfsParser(str(session.image_path))
             with btrfs_parser:
@@ -269,6 +281,18 @@ class UnearthApp:
                     for partition in partitions:
                         self.logger.info(f"Checking partition {partition.index}: offset={partition.offset}, size={partition.size}")
                         
+                        # Try XFS with offset
+                        try:
+                            xfs_parser = XfsParser(str(session.image_path), offset=partition.offset)
+                            with xfs_parser:
+                                if xfs_parser.detect_filesystem():
+                                    session.fs_type = FileSystemType.XFS
+                                    session.metadata['partition_offset'] = partition.offset
+                                    self.logger.info(f"Detected XFS filesystem in partition {partition.index}")
+                                    return FileSystemType.XFS
+                        except Exception as e:
+                            self.logger.debug(f"Partition {partition.index} XFS check failed: {e}")
+                        
                         # Try Btrfs with offset
                         try:
                             btrfs_parser = BtrfsParser(str(session.image_path), offset=partition.offset)
@@ -279,7 +303,7 @@ class UnearthApp:
                                     self.logger.info(f"Detected Btrfs filesystem in partition {partition.index}")
                                     return FileSystemType.BTRFS
                         except Exception as e:
-                            self.logger.debug(f"Partition {partition.index} check failed: {e}")
+                            self.logger.debug(f"Partition {partition.index} Btrfs check failed: {e}")
                             
             except Exception as e:
                 self.logger.error(f"Partition detection failed: {e}")
@@ -344,9 +368,23 @@ class UnearthApp:
         # TODO: Initialize parser based on filesystem type
         # This will be implemented when parsers are ready
         if session.fs_type == FileSystemType.XFS:
-            self.logger.info("Using XFS parser (to be implemented)")
-            # self.xfs_parser = XFSParser(session.image_path)
-            # recovered_files = self.xfs_parser.recover_deleted()
+            self.logger.info("Using XFS parser")
+            try:
+                offset = session.metadata.get('partition_offset', 0)
+                
+                # Adapter for raw (current, total, msg) -> (percent, msg)
+                def xfs_parser_callback(curr, total, msg):
+                    if progress_callback and total > 0:
+                        percent = int((curr / total) * 100)
+                        progress_callback(percent, msg)
+                
+                self.xfs_parser = XfsParser(str(session.image_path), offset=offset, progress_callback=xfs_parser_callback)
+                with self.xfs_parser:
+                    recovered_files = self.xfs_parser.recover_deleted_files(session.output_dir, file_filter=file_filter)
+                self.logger.info(f"XFS parser recovered {len(recovered_files)} files")
+            except Exception as e:
+                self.logger.error(f"XFS recovery failed: {e}")
+                recovered_files = []
             
         elif session.fs_type == FileSystemType.BTRFS:
             self.logger.info("Using Btrfs parser")
