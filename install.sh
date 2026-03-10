@@ -285,7 +285,7 @@ create_desktop_entry() {
         
         cat > "$DESKTOP_DIR/unearth.desktop" << EOF
 [Desktop Entry]
-Name=Unearth Forensics
+Name=Unearth
 Comment=Forensic Data Recovery Tool
 Exec=${HOME}/.local/bin/unearth-gui
 Icon=${INSTALL_DIR}/icon.png
