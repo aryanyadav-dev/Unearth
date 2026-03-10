@@ -34,7 +34,7 @@ These features streamline the investigation process, making the final evidence r
 ## Architecture
 
 ```
-unearth/
+Unearth/
 ├── run.py                      # Main launcher (CLI/GUI interactive entrypoint)
 │
 ├── src/
@@ -118,8 +118,8 @@ sudo dnf install -y \
 
 ```bash
 # Clone repository
-git clone https://github.com/bhargavgajare1479/unearth.git
-cd unearth
+git clone https://github.com/bhargavgajare1479/Unearth.git
+cd Unearth
 
 # Create virtual environment
 python -m venv venv

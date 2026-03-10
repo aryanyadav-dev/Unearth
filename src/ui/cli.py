@@ -99,18 +99,18 @@ class UnearthCLI:
   exit                         Exit application
 
 [dim]Examples:[/dim]
-  unearth analyze /evidence/disk.img
-  unearth recover /evidence/disk.img /output/case001
-  unearth search <session_id> "password,confidential"
-  unearth report <session_id> pdf
+  Unearth analyze /evidence/disk.img
+  Unearth recover /evidence/disk.img /output/case001
+  Unearth search <session_id> "password,confidential"
+  Unearth report <session_id> pdf
         """
-        console.print(Panel(help_text, title="[bold]UnEarth CLI Help[/bold]", border_style="cyan"))
+        console.print(Panel(help_text, title="[bold]Unearth CLI Help[/bold]", border_style="cyan"))
 
 
 @click.group(invoke_without_command=True)
 @click.pass_context
 def cli(ctx):
-    """UnEarth - Forensic Data Recovery Tool"""
+    """Unearth - Forensic Data Recovery Tool"""
     if ctx.invoked_subcommand is None:
         # No command provided, show interactive mode
         handler = UnearthCLI()
@@ -125,12 +125,12 @@ def version():
     version_info.add_column(style="cyan bold")
     version_info.add_column(style="white")
     
-    version_info.add_row("Application", "UnEarth Forensic Recovery")
+    version_info.add_row("Application", "Unearth Forensic Recovery")
     version_info.add_row("Version", "1.0.0")
     version_info.add_row("Python", f"{sys.version.split()[0]}")
     version_info.add_row("Backend", "Available" if BACKEND_AVAILABLE else "Not Available")
     version_info.add_row("GUI Support", "Available")
-    version_info.add_row("Author", "UnEarth Development Team")
+    version_info.add_row("Author", "Unearth Development Team")
     
     console.print(Panel(version_info, title="[bold blue]Version Information[/bold blue]", border_style="blue"))
 
@@ -190,8 +190,8 @@ def analyze(image_path):
         console.print(results)
         
         console.print(f"\n[bold yellow]Next Steps:[/bold yellow]")
-        console.print(f"  • Run recovery: [cyan]unearth recover {image_path} {output_dir}[/cyan]")
-        console.print(f"  • View session: [cyan]unearth session-info {session_id}[/cyan]\n")
+        console.print(f"  • Run recovery: [cyan]Unearth recover {image_path} {output_dir}[/cyan]")
+        console.print(f"  • View session: [cyan]Unearth session-info {session_id}[/cyan]\n")
         
     except Exception as e:
         console.print(f"[bold red]Error:[/bold red] {str(e)}")
@@ -322,9 +322,9 @@ def recover(image_path, output_dir, filesystem, file_filter, carve, hash_algorit
         console.print(f"[bold]Output Directory:[/bold] {output_dir}\n")
         
         console.print("[bold yellow]Next Steps:[/bold yellow]")
-        console.print(f"  • View timeline: [cyan]unearth timeline {session_id}[/cyan]")
-        console.print(f"  • Search files: [cyan]unearth search {session_id} <keywords>[/cyan]")
-        console.print(f"  • Generate report: [cyan]unearth report {session_id} pdf[/cyan]\n")
+        console.print(f"  • View timeline: [cyan]Unearth timeline {session_id}[/cyan]")
+        console.print(f"  • Search files: [cyan]Unearth search {session_id} <keywords>[/cyan]")
+        console.print(f"  • Generate report: [cyan]Unearth report {session_id} pdf[/cyan]\n")
         
     except Exception as e:
         console.print(f"[bold red]Error:[/bold red] {str(e)}")
@@ -733,7 +733,7 @@ def interactive():
     
     while True:
         try:
-            command = Prompt.ask("[bold green]unearth[/bold green]")
+            command = Prompt.ask("[bold green]Unearth[/bold green]")
             
             if command.lower() in ['exit', 'quit', 'q']:
                 console.print("[yellow]Goodbye![/yellow]")

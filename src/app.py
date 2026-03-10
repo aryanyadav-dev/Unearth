@@ -163,12 +163,12 @@ class UnearthApp:
         root_logger = logging.getLogger()
         root_logger.setLevel(log_level)
         
-        # Configure unearth logger specifically
-        logger = logging.getLogger("unearth")
+        # Configure Unearth logger specifically
+        logger = logging.getLogger("Unearth")
         logger.setLevel(log_level)
         
         # File handler with timestamp
-        log_file = log_dir / f"unearth_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        log_file = log_dir / f"Unearth_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
         file_handler = logging.FileHandler(log_file)
         file_handler.setLevel(log_level)
         
@@ -188,7 +188,7 @@ class UnearthApp:
         root_logger.addHandler(file_handler)
         root_logger.addHandler(console_handler)
         
-        # Don't add handlers to unearth logger — it inherits from root via propagation.
+        # Don't add handlers to Unearth logger — it inherits from root via propagation.
         # Adding to both causes every message to be printed twice.
         
         return logger
@@ -1021,7 +1021,7 @@ class UnearthApp:
         # Title
         title_style = ParagraphStyle('Title', parent=styles['Title'], fontSize=22,
                                       textColor=colors.HexColor('#1E40AF'))
-        elements.append(Paragraph("UnEarth Forensic Recovery Report", title_style))
+        elements.append(Paragraph("Unearth Forensic Recovery Report", title_style))
         elements.append(Spacer(1, 12))
         
         # Session info
@@ -1296,7 +1296,7 @@ class UnearthApp:
         """Fallback plain-text report when reportlab is not available"""
         lines = []
         lines.append("=" * 60)
-        lines.append("  UnEarth Forensic Recovery Report")
+        lines.append("  Unearth Forensic Recovery Report")
         lines.append("=" * 60)
         lines.append(f"Session ID:  {session.session_id}")
         lines.append(f"Image:       {session.image_path}")

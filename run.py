@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-UnEarth Forensic Recovery Tool - Main Launcher
+Unearth Forensic Recovery Tool - Main Launcher
 Interactive launcher that lets users choose between CLI and GUI.
 
 Usage:
@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 
 def print_banner():
-    """Print UnEarth banner"""
+    """Print Unearth banner"""
     banner = """
  ╔════════════════════════════════════════════════════════════════╗
  ║                                                                ║
@@ -157,8 +157,8 @@ def interactive_mode():
 def main():
     """Main launcher entry point"""
     parser = argparse.ArgumentParser(
-        description="UnEarth Forensic Recovery Tool",
-        epilog="For detailed help, run: unearth --help (CLI) or use GUI help menu"
+        description="Unearth Forensic Recovery Tool",
+        epilog="For detailed help, run: Unearth --help (CLI) or use GUI help menu"
     )
 
     group = parser.add_mutually_exclusive_group()
@@ -170,7 +170,7 @@ def main():
     # Check for root permissions FIRST, before showing any menu
     if not is_root():
         print_banner()
-        print("⚠️  UnEarth requires root privileges for disk access.\n")
+        print("⚠️  Unearth requires root privileges for disk access.\n")
         relaunch_with_sudo()
     
     # Now we are running as root - proceed with normal flow

@@ -1,4 +1,4 @@
-# UnEarth Forensic Recovery Tool - Makefile
+# Unearth Forensic Recovery Tool - Makefile
 # Simplifies common development and deployment tasks
 
 .PHONY: help install install-dev install-minimal run run-gui run-cli test clean uninstall
@@ -6,7 +6,7 @@
 # Default target
 help:
 	@echo ""
-	@echo "UnEarth Forensic Recovery Tool - Available Commands"
+	@echo "Unearth Forensic Recovery Tool - Available Commands"
 	@echo "===================================================="
 	@echo ""
 	@echo "Installation:"
@@ -25,7 +25,7 @@ help:
 	@echo ""
 	@echo "Maintenance:"
 	@echo "  make clean            Clean build artifacts"
-	@echo "  make uninstall        Uninstall UnEarth"
+	@echo "  make uninstall        Uninstall Unearth"
 	@echo "  make update           Update to latest version"
 	@echo ""
 	@echo "Packaging:"
@@ -35,7 +35,7 @@ help:
 
 # Installation targets
 install:
-	@echo "Installing UnEarth with all dependencies..."
+	@echo "Installing Unearth with all dependencies..."
 	pip install -e .
 	@echo "✓ Installation complete!"
 	@echo ""
@@ -43,12 +43,12 @@ install:
 	@echo "Or: make run"
 
 install-dev:
-	@echo "Installing UnEarth with development dependencies..."
+	@echo "Installing Unearth with development dependencies..."
 	pip install -e ".[dev]"
 	@echo "✓ Development installation complete!"
 
 install-minimal:
-	@echo "Installing UnEarth with minimal dependencies..."
+	@echo "Installing Unearth with minimal dependencies..."
 	pip install -e ".[minimal]"
 	@echo "✓ Minimal installation complete!"
 
@@ -88,12 +88,12 @@ clean:
 	@echo "✓ Cleanup complete!"
 
 uninstall:
-	@echo "Uninstalling UnEarth..."
-	pip uninstall -y unearth-forensics
+	@echo "Uninstalling Unearth..."
+	pip uninstall -y Unearth-forensics
 	@echo "✓ Uninstall complete!"
 
 update:
-	@echo "Updating UnEarth..."
+	@echo "Updating Unearth..."
 	git pull origin main
 	pip install -e . --upgrade
 	@echo "✓ Update complete!"

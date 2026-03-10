@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-UnEarth Forensic Recovery Tool - Setup Configuration
+Unearth Forensic Recovery Tool - Setup Configuration
 Enables installation via pip and creates command-line entry points
 """
 
@@ -23,14 +23,14 @@ if requirements_file.exists():
         ]
 
 setup(
-    name="unearth-forensics",
+    name="Unearth-forensics",
     version="1.0.0",
     description="Professional Forensic Data Recovery Tool for XFS and Btrfs filesystems",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    author="UnEarth Development Team",
-    author_email="dev@unearth-forensics.org",
-    url="https://github.com/yourusername/unearth",
+    author="Unearth Development Team",
+    author_email="dev@Unearth-forensics.org",
+    url="https://github.com/yourusername/Unearth",
     license="MIT",
     
     # Package configuration
@@ -64,9 +64,9 @@ setup(
     # Entry points - Creates command-line scripts
     entry_points={
         'console_scripts': [
-            'unearth=ui.cli:main',              # Main CLI command
-            'unearth-gui=ui.gui:main',          # GUI launcher
-            'unearth-cli=ui.cli:main',          # Explicit CLI
+            'Unearth=ui.cli:main',              # Main CLI command
+            'Unearth-gui=ui.gui:main',          # GUI launcher
+            'Unearth-cli=ui.cli:main',          # Explicit CLI
         ],
     },
     

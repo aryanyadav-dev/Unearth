@@ -11,7 +11,7 @@ Btrfs Features Supported:
 - Snapshot enumeration
 - Checksum verification (CRC32C)
 
-Author: UnEarth Development Team
+Author: Unearth Development Team
 Version: 1.1.0
 """
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# UnEarth Forensic Recovery Tool - Installation Script
+# Unearth Forensic Recovery Tool - Installation Script
 # One-command installation for Linux/macOS
 #
 # Usage:
@@ -21,7 +21,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-INSTALL_DIR="${HOME}/.unearth"
+INSTALL_DIR="${HOME}/.Unearth"
 REPO_URL="https://github.com/bhargavgajare1479/Unearth.git"
 PYTHON_MIN_VERSION="3.11"
 
@@ -122,7 +122,7 @@ install_system_deps() {
 
 # Download/clone repository
 setup_repository() {
-    print_info "Setting up UnEarth..."
+    print_info "Setting up Unearth..."
     
     # Remove old installation if exists
     if [ -d "$INSTALL_DIR" ]; then
@@ -194,9 +194,9 @@ setup_python_env() {
     fi
     
     # Install package in development mode
-    print_info "Installing UnEarth package..."
+    print_info "Installing Unearth package..."
     pip install -e . -q
-    print_msg "UnEarth installed"
+    print_msg "Unearth installed"
 }
 
 # Create command-line wrapper scripts
@@ -207,41 +207,41 @@ create_commands() {
     BIN_DIR="${HOME}/.local/bin"
     mkdir -p "$BIN_DIR"
     
-    # Create unearth command
-    cat > "$BIN_DIR/unearth" << 'EOFCMD'
+    # Create Unearth command
+    cat > "$BIN_DIR/Unearth" << 'EOFCMD'
 #!/bin/bash
-# UnEarth launcher script
-INSTALL_DIR="${HOME}/.unearth"
+# Unearth launcher script
+INSTALL_DIR="${HOME}/.Unearth"
 source "${INSTALL_DIR}/venv/bin/activate"
 cd "${INSTALL_DIR}"
 python run.py "$@"
 EOFCMD
     
-    chmod +x "$BIN_DIR/unearth"
+    chmod +x "$BIN_DIR/Unearth"
     
-    # Create unearth-gui shortcut
-    cat > "$BIN_DIR/unearth-gui" << 'EOFCMD'
+    # Create Unearth-gui shortcut
+    cat > "$BIN_DIR/Unearth-gui" << 'EOFCMD'
 #!/bin/bash
-# UnEarth GUI launcher
-INSTALL_DIR="${HOME}/.unearth"
+# Unearth GUI launcher
+INSTALL_DIR="${HOME}/.Unearth"
 source "${INSTALL_DIR}/venv/bin/activate"
 cd "${INSTALL_DIR}"
 python run.py --gui
 EOFCMD
     
-    chmod +x "$BIN_DIR/unearth-gui"
+    chmod +x "$BIN_DIR/Unearth-gui"
     
-    # Create unearth-cli shortcut
-    cat > "$BIN_DIR/unearth-cli" << 'EOFCMD'
+    # Create Unearth-cli shortcut
+    cat > "$BIN_DIR/Unearth-cli" << 'EOFCMD'
 #!/bin/bash
-# UnEarth CLI launcher
-INSTALL_DIR="${HOME}/.unearth"
+# Unearth CLI launcher
+INSTALL_DIR="${HOME}/.Unearth"
 source "${INSTALL_DIR}/venv/bin/activate"
 cd "${INSTALL_DIR}"
 python run.py --cli
 EOFCMD
     
-    chmod +x "$BIN_DIR/unearth-cli"
+    chmod +x "$BIN_DIR/Unearth-cli"
     
     print_msg "Commands created in $BIN_DIR"
 }
@@ -265,7 +265,7 @@ setup_path() {
         
         # Add to shell config
         echo "" >> "$SHELL_RC"
-        echo "# UnEarth - Added by installer" >> "$SHELL_RC"
+        echo "# Unearth - Added by installer" >> "$SHELL_RC"
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_RC"
         
         print_msg "Added to PATH in $SHELL_RC"
@@ -283,16 +283,16 @@ create_desktop_entry() {
         DESKTOP_DIR="${HOME}/.local/share/applications"
         mkdir -p "$DESKTOP_DIR"
         
-        cat > "$DESKTOP_DIR/unearth.desktop" << EOF
+        cat > "$DESKTOP_DIR/Unearth.desktop" << EOF
 [Desktop Entry]
 Name=Unearth
 Comment=Forensic Data Recovery Tool
-Exec=${HOME}/.local/bin/unearth-gui
+Exec=${HOME}/.local/bin/Unearth-gui
 Icon=${INSTALL_DIR}/icon.png
 Terminal=false
 Type=Application
 Categories=Utility;System;
-Keywords=forensics;recovery;unearth;
+Keywords=forensics;recovery;Unearth;
 EOF
         
         print_msg "Desktop entry created"
@@ -304,24 +304,24 @@ print_completion() {
     echo ""
     echo -e "${GREEN}╔════════════════════════════════════════════════════════╗${NC}"
     echo -e "${GREEN}║                                                        ║${NC}"
-    echo -e "${GREEN}║  ✓ UnEarth Installation Complete!                     ║${NC}"
+    echo -e "${GREEN}║  ✓ Unearth Installation Complete!                     ║${NC}"
     echo -e "${GREEN}║                                                        ║${NC}"
     echo -e "${GREEN}╚════════════════════════════════════════════════════════╝${NC}"
     echo ""
     echo -e "${BLUE}Installation Location:${NC} $INSTALL_DIR"
     echo ""
     echo -e "${BLUE}Available Commands:${NC}"
-    echo -e "  ${GREEN}unearth${NC}         - Interactive mode (choose GUI/CLI)"
-    echo -e "  ${GREEN}unearth-gui${NC}     - Launch GUI directly"
-    echo -e "  ${GREEN}unearth-cli${NC}     - Launch CLI directly"
+    echo -e "  ${GREEN}Unearth${NC}         - Interactive mode (choose GUI/CLI)"
+    echo -e "  ${GREEN}Unearth-gui${NC}     - Launch GUI directly"
+    echo -e "  ${GREEN}Unearth-cli${NC}     - Launch CLI directly"
     echo ""
     echo -e "${BLUE}Quick Start:${NC}"
     echo -e "  1. Restart your terminal or run: ${YELLOW}source ~/.bashrc${NC}"
-    echo -e "  2. Run: ${YELLOW}unearth${NC}"
+    echo -e "  2. Run: ${YELLOW}Unearth${NC}"
     echo -e "  3. Choose option 1 for GUI"
     echo ""
-    echo -e "${BLUE}Documentation:${NC} https://github.com/yourusername/unearth"
-    echo -e "${BLUE}Issues:${NC} https://github.com/yourusername/unearth/issues"
+    echo -e "${BLUE}Documentation:${NC} https://github.com/yourusername/Unearth"
+    echo -e "${BLUE}Issues:${NC} https://github.com/yourusername/Unearth/issues"
     echo ""
 }
 

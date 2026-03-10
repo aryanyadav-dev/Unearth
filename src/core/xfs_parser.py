@@ -10,7 +10,7 @@ XFS Features Supported:
 - Deleted file detection (zeroed di_mode with preserved extents)
 - SHA256 hash verification
 
-Author: UnEarth Development Team
+Author: Unearth Development Team
 Version: 1.0.0
 """
 

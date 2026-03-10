@@ -1,4 +1,4 @@
-# UnEarth Forensic Recovery Tool - Dependencies
+# Unearth Forensic Recovery Tool - Dependencies
 # Python 3.11+ required
 
 # ==========================================

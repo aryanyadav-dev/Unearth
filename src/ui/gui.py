@@ -254,7 +254,7 @@ class UnearthGUI(QMainWindow):
     
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("UnEarth - Forensic Data Recovery")
+        self.setWindowTitle("Unearth - Forensic Data Recovery")
         self.setGeometry(100, 100, 1600, 900)
         
         # Initialize backend if available
@@ -331,7 +331,7 @@ class UnearthGUI(QMainWindow):
         layout.setSpacing(5)
         
         # Logo
-        logo = QLabel("🔍 UnEarth")
+        logo = QLabel("🔍 Unearth")
         logo.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
         logo.setStyleSheet("color: #FFFFFF; padding: 10px;")
         layout.addWidget(logo)
@@ -1029,7 +1029,7 @@ class UnearthGUI(QMainWindow):
         self.welcome_section = QWidget()
         welcome_layout = QVBoxLayout(self.welcome_section)
         welcome_text = QLabel(
-            "Welcome to UnEarth Forensic Recovery\n\n"
+            "Welcome to Unearth Forensic Recovery\n\n"
             "Click '+ Attach Source...' to begin recovery from:\n"
             "• Disk Image Files (.img, .raw, .dd, .e01)\n"
             "• System Partitions (XFS/Btrfs)\n"
@@ -2565,8 +2565,8 @@ def main():
     
     app = QApplication(sys.argv)
     
-    app.setApplicationName("UnEarth")
-    app.setOrganizationName("UnEarth Forensics")
+    app.setApplicationName("Unearth")
+    app.setOrganizationName("Unearth Forensics")
     
     apply_global_stylesheet(app)
     
